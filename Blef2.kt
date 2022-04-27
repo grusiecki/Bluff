@@ -1,478 +1,6 @@
 import sun.security.ec.point.ProjectivePoint
 
-fun setLevel(set1:String):Int{
-    var set= set1
-    var level:Int = 0
-    when (set) {
-        "1 card" -> {
-            level = 1
-        }
-        "pair" -> {
-            level = 2
-        }
-        "two pairs" -> {
-            level = 3
-        }
-        "three" -> {
-            level = 4
-        }
-        "straight" -> {
-            level = 5
-        }
-        "full" -> {
-            level = 6
-        }
-        "four" -> {
-            level = 7
-        }
-        "flush" -> {
-            level =8
-        }
-        "royal flush" -> {
-            level=9
-        }
-        else -> {
-            level = 10
-        }
-    }
-    return level
-} // sets level to decide which is bigger
-fun cardLevel(card1:String):Int{
-    var card1 = card1
-    var level = 0
-    when (card1) {
-        "9" -> {
-            level = 1
-        }
-        "10" -> {
-            level = 2
-        }
-        "jack" -> {
-            level = 3
-        }
-        "queen" -> {
-            level = 4
-        }
-        "king" -> {
-            level = 5
-        }
-        "ace" -> {
-            level = 6
-        }
-        "small" -> {
-            level = 1
-        }
-        "big"->{
-            level = 2
-        }
-        "club"->{
-            level = 1
-        }
-        "spade"->{
-            level = 2
-        }
-        "diamond"->{
-            level=3
-        }
-        "heart"->{
-            level = 4
-        }
-    }
-    return level
-} // cards level to decide which is bigger
-fun correctCard(card1:String):Boolean{
-    var card1 = card1
-    var correct = false
-    if(card1=="9" || card1=="10" || card1=="jack" || card1 == "queen" || card1 == "king" || card1=="ace"){
-        correct = true
-    }
-    return correct
-} // check what user wrote (name cards)
-fun correctColor(card1:String):Boolean{
-    var card1=card1
-    var correct=false
-    if(card1=="heart" || card1=="diamond" || card1=="club" || card1=="spade"){
-        correct=true
-    }
-    return correct
-} // check what user wrote (name colors)
-fun correctBigOrSmall(card1:String):Boolean{
-    var card1=card1
-    var correct=false
-    if(card1=="small" || card1=="big"){
-        correct=true
-    }
-    return correct
-}// check what user wrote (big or small)
-fun smallerSet(set1: String, set2: String):Boolean{
-    var set1 = setLevel(set1)
-    var set2 = setLevel(set2)
-    var correct= true
-    correct = set1 >= set2
-    return correct
-} // which set is bigger
-fun firstOrSecondPairIsBigger(level1: Int, level2:Int):Int{
-    var level1 = level1
-    var level2 =level2
-    return if(level1>level2){
-        level1
-    } else{
-        level2
-    }
-}//which pair is bigger in two pairs
-fun firstOrSecondPairIsSmaller(level1: Int, level2:Int):Int{
-    var level1 = level1
-    var level2 = level2
-    return if(level1<level2){
-        level1
-    } else{
-        level2
-    }
-}//which pair is smaller in two pairs
-fun addingCardsPlayer1(quantity:Int, deck:MutableList<String>):MutableList<String>{
-    var player1= mutableListOf<String>()
-    when(quantity){
-        1 ->{
-            player1.add(deck[1])
-    }
-        2 ->{
-        player1.add(deck[1])
-        player1.add(deck[2])
-    }
-        3 ->{
-        player1.add(deck[1])
-        player1.add(deck[2])
-        player1.add(deck[3])
-    }
-        4 -> {
-        player1.add(deck[1])
-        player1.add(deck[2])
-        player1.add(deck[3])
-        player1.add(deck[4])
-    }
-        5 -> {
-        player1.add(deck[1])
-        player1.add(deck[2])
-        player1.add(deck[3])
-        player1.add(deck[4])
-        player1.add(deck[5])
-    }
-    }
-    return player1
-} // adding cards for player1 deck
-fun addingCardsPlayer2(quantity:Int, deck:MutableList<String>):MutableList<String>{
-    var player2 = mutableListOf<String>()
-    when(quantity){
-        1 ->{
-            player2.add(deck[6])
-        }
-        2 ->{
-            player2.add(deck[6])
-            player2.add(deck[7])
-        }
-        3 ->{
-            player2.add(deck[6])
-            player2.add(deck[7])
-            player2.add(deck[8])
-        }
-        4 -> {
-            player2.add(deck[6])
-            player2.add(deck[7])
-            player2.add(deck[8])
-            player2.add(deck[9])
-        }
-        5 -> {
-            player2.add(deck[6])
-            player2.add(deck[7])
-            player2.add(deck[8])
-            player2.add(deck[9])
-            player2.add(deck[10])
-        }
-    }
-    return player2
-} // adding cards for player2 deck
-fun addingCardsPlayer3(quantity: Int, deck:MutableList<String>):MutableList<String>{
-    var player3= mutableListOf<String>()
-    when(quantity){
-        1 ->{
-            player3.add(deck[11])
-        }
-        2 ->{
-            player3.add(deck[11])
-            player3.add(deck[12])
-        }
-        3 ->{
-            player3.add(deck[11])
-            player3.add(deck[12])
-            player3.add(deck[13])
-        }
-        4 -> {
-            player3.add(deck[11])
-            player3.add(deck[12])
-            player3.add(deck[13])
-            player3.add(deck[14])
-        }
-        5 -> {
-            player3.add(deck[11])
-            player3.add(deck[12])
-            player3.add(deck[13])
-            player3.add(deck[14])
-            player3.add(deck[15])
-        }
-    }
-    return player3
-} // adding cards for player3 deck
-fun addingCardsPlayer4(quantity: Int, deck: MutableList<String>):MutableList<String>{
-    var player4 = mutableListOf<String>()
-    when(quantity){
-        1 ->{
-            player4.add(deck[16])
-        }
-        2 ->{
-            player4.add(deck[16])
-            player4.add(deck[17])
-        }
-        3 ->{
-            player4.add(deck[16])
-            player4.add(deck[17])
-            player4.add(deck[18])
-        }
-        4 -> {
-            player4.add(deck[16])
-            player4.add(deck[17])
-            player4.add(deck[18])
-            player4.add(deck[19])
-        }
-        5 -> {
-            player4.add(deck[16])
-            player4.add(deck[17])
-            player4.add(deck[18])
-            player4.add(deck[19])
-            player4.add(deck[20])
-        }
-    }
-    return player4
-} // adding cards for player4 deck
-fun playingDeck(playerDeck: MutableList<String>, deckPlay: MutableList<String>):MutableList<String>{
-    var playingDeck = deckPlay
-    for(card in playerDeck){
-        playingDeck.add(card)
-    }
-    return playingDeck
-} // addding cards to playing deck
-fun oneCard(card1:String, playingDeck: MutableList<String>): Boolean{
-    var card1 = card1
-    var car:String
-    var correct = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            correct = true
-            break
-        }
-    }
-    return correct
-}//do choosen 1 card exist in playing deck
-fun pair(card1: String,playingDeck: MutableList<String>):Boolean{
 
-    var car:String
-    var count = 0
-    var correct = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            count+=1
-            if(count==2){
-                correct = true
-                break
-            }
-        }
-    }
-    return correct
-} // do choosen pair exist in playing deck
-fun twoPairs(card1: String, card2: String, playingDeck: MutableList<String>):Boolean{
-    var car:String
-    var count = 0
-    var count2 = 0
-    var correct = false
-    var correct1= false
-    var correct2 = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            count+=1
-            if(count>=2){
-                correct1 = true
-                 break
-            }
-        }
-    }
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card2){
-            count2+=1
-            if(count2>=2){
-                correct2 = true
-                break
-            }
-        }
-    }
-    if(correct1 && correct2){
-        correct=true
-    }
-    return correct
-}// do choosen pairs exist in playing deck
-fun threeOfKind(card1: String, playingDeck: MutableList<String>):Boolean{
-    var car:String
-    var count = 0
-    var correct = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            count+=1
-            if(count==3){
-                correct = true
-                break
-            }
-        }
-    }
-    return correct
-} // do choosen three of kind exist in playing deck
-fun straight(card1: String, playingDeck: MutableList<String>):Boolean{
-    var card1 = card1
-    var car:String
-    var correct = false
-    var c1 = false
-    var c2 = false
-    var c3 = false
-    var c4 = false
-    var c5 = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        when (car) {
-            "10" -> {
-                c2=true
-            }
-            "jack" -> {
-                c3=true
-            }
-            "queen" -> {
-                c4 = true
-            }
-            "king" -> {
-                c5 = true
-            }
-        }
-        if(card1 == "small"){
-            if(car== "9"){
-                c1=true
-            }
-        }else if(card1 =="big"){
-            if(car=="ace"){
-                c1=true
-            }
-        }
-
-    }
-    correct = c1==true&&c2==true&&c3==true&&c4==true&&c5==true
-    return correct
-} // do choosen straight exist in playing deck
-fun fullHouse(card1: String, card2: String, playingDeck: MutableList<String>):Boolean{
-    var car:String
-    var count = 0
-    var count2 = 0
-    var correct = false
-    var correct1= false
-    var correct2 = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            count+=1
-            if(count>=3){
-                correct1 = true
-                break
-            }
-        }
-    }
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card2){
-            count2+=1
-            if(count2>=2){
-                correct2 = true
-                break
-            }
-        }
-    }
-    if(correct1 && correct2){
-        correct=true
-    }
-    return correct
-} // do choosen full house exist in playing deck
-fun fourOfKind(card1: String, playingDeck: MutableList<String>):Boolean{
-    var car:String
-    var count = 0
-    var correct = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[0]
-        if (car== card1){
-            count+=1
-            if(count==4){
-                correct = true
-                break
-            }
-        }
-    }
-    return correct
-} // do choosen four of kind exist in playing deck
-fun flush(card1:String, playingDeck: MutableList<String>):Boolean{
-    var card1 = card1
-    var car:String
-    var count = 0
-    var correct = false
-    for(card in playingDeck){
-        car=card.split("\\s".toRegex())[1]
-        if(car==card1){
-          count +=1
-        }
-    }
-    if (count>=5){
-        correct = true
-    }
-    return correct
-} // do choosen flush exist in playing deck
-fun royalFlush(card1: String, card2: String,playingDeck: MutableList<String>):Boolean{
-    var card1 = card1
-    var car:String
-    var c1 = false
-    var c2 = false
-    var c3 = false
-    var c4 = false
-    var c5 = false
-    var correct = false
-    for(card in playingDeck){
-        if(card== "10 $card2"){
-            c2 = true
-        }else if(card=="jack $card2"){
-            c3=true
-        } else if(card=="queen $card2"){
-            c4 = true
-        }else if(card=="king $card2"){
-            c5=true
-        }
-        if(card1=="small"){
-            if(card== "9 $card2"){
-                c1=true
-            }
-        }else if(card1=="big"){
-            if(card== "ace $card2"){
-                c1= true
-            }
-        }
-    }
-    correct = c1==true&&c2==true&&c3==true&&c4==true&&c5==true
-    return correct
-} // do choosen royalFlush exist in playing deck
 fun main(args: Array<String>) {
     val cards = listOf("ace", "king", "queen", "jack", "10", "9")
     val colors = listOf(" heart", " diamond", " spade", " club")
@@ -3551,3 +3079,477 @@ fun main(args: Array<String>) {
     }
 
 }
+
+fun setLevel(set1:String):Int{
+    var set= set1
+    var level:Int = 0
+    when (set) {
+        "1 card" -> {
+            level = 1
+        }
+        "pair" -> {
+            level = 2
+        }
+        "two pairs" -> {
+            level = 3
+        }
+        "three" -> {
+            level = 4
+        }
+        "straight" -> {
+            level = 5
+        }
+        "full" -> {
+            level = 6
+        }
+        "four" -> {
+            level = 7
+        }
+        "flush" -> {
+            level =8
+        }
+        "royal flush" -> {
+            level=9
+        }
+        else -> {
+            level = 10
+        }
+    }
+    return level
+} // sets level to decide which is bigger
+fun cardLevel(card1:String):Int{
+    var card1 = card1
+    var level = 0
+    when (card1) {
+        "9" -> {
+            level = 1
+        }
+        "10" -> {
+            level = 2
+        }
+        "jack" -> {
+            level = 3
+        }
+        "queen" -> {
+            level = 4
+        }
+        "king" -> {
+            level = 5
+        }
+        "ace" -> {
+            level = 6
+        }
+        "small" -> {
+            level = 1
+        }
+        "big"->{
+            level = 2
+        }
+        "club"->{
+            level = 1
+        }
+        "spade"->{
+            level = 2
+        }
+        "diamond"->{
+            level=3
+        }
+        "heart"->{
+            level = 4
+        }
+    }
+    return level
+} // cards level to decide which is bigger
+fun correctCard(card1:String):Boolean{
+    var card1 = card1
+    var correct = false
+    if(card1=="9" || card1=="10" || card1=="jack" || card1 == "queen" || card1 == "king" || card1=="ace"){
+        correct = true
+    }
+    return correct
+} // check what user wrote (name cards)
+fun correctColor(card1:String):Boolean{
+    var card1=card1
+    var correct=false
+    if(card1=="heart" || card1=="diamond" || card1=="club" || card1=="spade"){
+        correct=true
+    }
+    return correct
+} // check what user wrote (name colors)
+fun correctBigOrSmall(card1:String):Boolean{
+    var card1=card1
+    var correct=false
+    if(card1=="small" || card1=="big"){
+        correct=true
+    }
+    return correct
+}// check what user wrote (big or small)
+fun smallerSet(set1: String, set2: String):Boolean{
+    var set1 = setLevel(set1)
+    var set2 = setLevel(set2)
+    var correct= true
+    correct = set1 >= set2
+    return correct
+} // which set is bigger
+fun firstOrSecondPairIsBigger(level1: Int, level2:Int):Int{
+    var level1 = level1
+    var level2 =level2
+    return if(level1>level2){
+        level1
+    } else{
+        level2
+    }
+}//which pair is bigger in two pairs
+fun firstOrSecondPairIsSmaller(level1: Int, level2:Int):Int{
+    var level1 = level1
+    var level2 = level2
+    return if(level1<level2){
+        level1
+    } else{
+        level2
+    }
+}//which pair is smaller in two pairs
+fun addingCardsPlayer1(quantity:Int, deck:MutableList<String>):MutableList<String>{
+    var player1= mutableListOf<String>()
+    when(quantity){
+        1 ->{
+            player1.add(deck[1])
+    }
+        2 ->{
+        player1.add(deck[1])
+        player1.add(deck[2])
+    }
+        3 ->{
+        player1.add(deck[1])
+        player1.add(deck[2])
+        player1.add(deck[3])
+    }
+        4 -> {
+        player1.add(deck[1])
+        player1.add(deck[2])
+        player1.add(deck[3])
+        player1.add(deck[4])
+    }
+        5 -> {
+        player1.add(deck[1])
+        player1.add(deck[2])
+        player1.add(deck[3])
+        player1.add(deck[4])
+        player1.add(deck[5])
+    }
+    }
+    return player1
+} // adding cards for player1 deck
+fun addingCardsPlayer2(quantity:Int, deck:MutableList<String>):MutableList<String>{
+    var player2 = mutableListOf<String>()
+    when(quantity){
+        1 ->{
+            player2.add(deck[6])
+        }
+        2 ->{
+            player2.add(deck[6])
+            player2.add(deck[7])
+        }
+        3 ->{
+            player2.add(deck[6])
+            player2.add(deck[7])
+            player2.add(deck[8])
+        }
+        4 -> {
+            player2.add(deck[6])
+            player2.add(deck[7])
+            player2.add(deck[8])
+            player2.add(deck[9])
+        }
+        5 -> {
+            player2.add(deck[6])
+            player2.add(deck[7])
+            player2.add(deck[8])
+            player2.add(deck[9])
+            player2.add(deck[10])
+        }
+    }
+    return player2
+} // adding cards for player2 deck
+fun addingCardsPlayer3(quantity: Int, deck:MutableList<String>):MutableList<String>{
+    var player3= mutableListOf<String>()
+    when(quantity){
+        1 ->{
+            player3.add(deck[11])
+        }
+        2 ->{
+            player3.add(deck[11])
+            player3.add(deck[12])
+        }
+        3 ->{
+            player3.add(deck[11])
+            player3.add(deck[12])
+            player3.add(deck[13])
+        }
+        4 -> {
+            player3.add(deck[11])
+            player3.add(deck[12])
+            player3.add(deck[13])
+            player3.add(deck[14])
+        }
+        5 -> {
+            player3.add(deck[11])
+            player3.add(deck[12])
+            player3.add(deck[13])
+            player3.add(deck[14])
+            player3.add(deck[15])
+        }
+    }
+    return player3
+} // adding cards for player3 deck
+fun addingCardsPlayer4(quantity: Int, deck: MutableList<String>):MutableList<String>{
+    var player4 = mutableListOf<String>()
+    when(quantity){
+        1 ->{
+            player4.add(deck[16])
+        }
+        2 ->{
+            player4.add(deck[16])
+            player4.add(deck[17])
+        }
+        3 ->{
+            player4.add(deck[16])
+            player4.add(deck[17])
+            player4.add(deck[18])
+        }
+        4 -> {
+            player4.add(deck[16])
+            player4.add(deck[17])
+            player4.add(deck[18])
+            player4.add(deck[19])
+        }
+        5 -> {
+            player4.add(deck[16])
+            player4.add(deck[17])
+            player4.add(deck[18])
+            player4.add(deck[19])
+            player4.add(deck[20])
+        }
+    }
+    return player4
+} // adding cards for player4 deck
+fun playingDeck(playerDeck: MutableList<String>, deckPlay: MutableList<String>):MutableList<String>{
+    var playingDeck = deckPlay
+    for(card in playerDeck){
+        playingDeck.add(card)
+    }
+    return playingDeck
+} // addding cards to playing deck
+fun oneCard(card1:String, playingDeck: MutableList<String>): Boolean{
+    var card1 = card1
+    var car:String
+    var correct = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            correct = true
+            break
+        }
+    }
+    return correct
+}//do choosen 1 card exist in playing deck
+fun pair(card1: String,playingDeck: MutableList<String>):Boolean{
+
+    var car:String
+    var count = 0
+    var correct = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            count+=1
+            if(count==2){
+                correct = true
+                break
+            }
+        }
+    }
+    return correct
+} // do choosen pair exist in playing deck
+fun twoPairs(card1: String, card2: String, playingDeck: MutableList<String>):Boolean{
+    var car:String
+    var count = 0
+    var count2 = 0
+    var correct = false
+    var correct1= false
+    var correct2 = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            count+=1
+            if(count>=2){
+                correct1 = true
+                 break
+            }
+        }
+    }
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card2){
+            count2+=1
+            if(count2>=2){
+                correct2 = true
+                break
+            }
+        }
+    }
+    if(correct1 && correct2){
+        correct=true
+    }
+    return correct
+}// do choosen pairs exist in playing deck
+fun threeOfKind(card1: String, playingDeck: MutableList<String>):Boolean{
+    var car:String
+    var count = 0
+    var correct = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            count+=1
+            if(count==3){
+                correct = true
+                break
+            }
+        }
+    }
+    return correct
+} // do choosen three of kind exist in playing deck
+fun straight(card1: String, playingDeck: MutableList<String>):Boolean{
+    var card1 = card1
+    var car:String
+    var correct = false
+    var c1 = false
+    var c2 = false
+    var c3 = false
+    var c4 = false
+    var c5 = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        when (car) {
+            "10" -> {
+                c2=true
+            }
+            "jack" -> {
+                c3=true
+            }
+            "queen" -> {
+                c4 = true
+            }
+            "king" -> {
+                c5 = true
+            }
+        }
+        if(card1 == "small"){
+            if(car== "9"){
+                c1=true
+            }
+        }else if(card1 =="big"){
+            if(car=="ace"){
+                c1=true
+            }
+        }
+
+    }
+    correct = c1==true&&c2==true&&c3==true&&c4==true&&c5==true
+    return correct
+} // do choosen straight exist in playing deck
+fun fullHouse(card1: String, card2: String, playingDeck: MutableList<String>):Boolean{
+    var car:String
+    var count = 0
+    var count2 = 0
+    var correct = false
+    var correct1= false
+    var correct2 = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            count+=1
+            if(count>=3){
+                correct1 = true
+                break
+            }
+        }
+    }
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card2){
+            count2+=1
+            if(count2>=2){
+                correct2 = true
+                break
+            }
+        }
+    }
+    if(correct1 && correct2){
+        correct=true
+    }
+    return correct
+} // do choosen full house exist in playing deck
+fun fourOfKind(card1: String, playingDeck: MutableList<String>):Boolean{
+    var car:String
+    var count = 0
+    var correct = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[0]
+        if (car== card1){
+            count+=1
+            if(count==4){
+                correct = true
+                break
+            }
+        }
+    }
+    return correct
+} // do choosen four of kind exist in playing deck
+fun flush(card1:String, playingDeck: MutableList<String>):Boolean{
+    var card1 = card1
+    var car:String
+    var count = 0
+    var correct = false
+    for(card in playingDeck){
+        car=card.split("\\s".toRegex())[1]
+        if(car==card1){
+          count +=1
+        }
+    }
+    if (count>=5){
+        correct = true
+    }
+    return correct
+} // do choosen flush exist in playing deck
+fun royalFlush(card1: String, card2: String,playingDeck: MutableList<String>):Boolean{
+    var card1 = card1
+    var car:String
+    var c1 = false
+    var c2 = false
+    var c3 = false
+    var c4 = false
+    var c5 = false
+    var correct = false
+    for(card in playingDeck){
+        if(card== "10 $card2"){
+            c2 = true
+        }else if(card=="jack $card2"){
+            c3=true
+        } else if(card=="queen $card2"){
+            c4 = true
+        }else if(card=="king $card2"){
+            c5=true
+        }
+        if(card1=="small"){
+            if(card== "9 $card2"){
+                c1=true
+            }
+        }else if(card1=="big"){
+            if(card== "ace $card2"){
+                c1= true
+            }
+        }
+    }
+    correct = c1==true&&c2==true&&c3==true&&c4==true&&c5==true
+    return correct
+} // do choosen royalFlush exist in playing deck
