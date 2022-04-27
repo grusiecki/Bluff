@@ -1,5 +1,5 @@
 import sun.security.ec.point.ProjectivePoint
-
+//Poker hands its called here sets
 
 fun main(args: Array<String>) {
     val cards = listOf("ace", "king", "queen", "jack", "10", "9")
